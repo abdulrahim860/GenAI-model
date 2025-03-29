@@ -1,1 +1,1 @@
-# Servipass
+# GenAi-model
