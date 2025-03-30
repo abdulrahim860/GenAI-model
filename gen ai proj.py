@@ -18,7 +18,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 def build_generator():
     model = Sequential()
-    model.add(Dense(256, input_dim=100))
+    model.add(Input(shape=(100,)))  
+    model.add(Dense(256))
     model.add(LeakyReLU(negative_slope=0.2))
     model.add(BatchNormalization(momentum=0.8))
     model.add(Dense(512))
@@ -32,3 +33,17 @@ def build_generator():
     return model
 
 generator = build_generator()
+
+def build_discriminator():
+    model = Sequential()
+    model.add(Input(shape=(28, 28, 1)))  
+    model.add(Flatten())  
+    model.add(Dense(512))
+    model.add(LeakyReLU(negative_slope=0.2))
+    model.add(Dense(256))
+    model.add(LeakyReLU(negative_slope=0.2))
+    model.add(Dense(1, activation='sigmoid'))
+    return model
+
+discriminator = build_discriminator()
+discriminator.compile(optimizer=Adam(0.0002, 0.5), loss='binary_crossentropy', metrics=['accuracy'])
