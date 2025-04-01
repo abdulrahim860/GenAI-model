@@ -47,3 +47,10 @@ def build_discriminator():
 
 discriminator = build_discriminator()
 discriminator.compile(optimizer=Adam(0.0002, 0.5), loss='binary_crossentropy', metrics=['accuracy'])
+
+discriminator.trainable=False
+gan_input=Input(shape=(100,))
+generated_image=generator(gan_input)
+gan_output=discriminator(generated_image)
+gan=Model(gan_input,gan_output)
+gan.compile(optimizer=Adam(0.0002,0.5),loss='binary_crossentropy')
