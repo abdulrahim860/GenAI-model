@@ -80,3 +80,19 @@ def train_gan(epochs, batch_size=128):
         if epoch % 100 == 0:
             print(f"{epoch} [D loss: {d_loss[0]}, acc.: {100*d_loss[1]}] [G loss: {g_loss}]")
             save_images(epoch)
+
+def save_images(epoch):
+    r,c=5,5
+    noise=np.random.normal(0,1,(r*c,100))
+    generated_images=generator.predict(noise)
+    generated_images=0.5*generated_images+0.5
+    fig,axs=plt.subplots(r,c)
+    count=0
+    for i in range(r):
+        for j in range(c):
+            axs[i,j].imshow(generated_images[count,:,:,0],cmap='gray')
+            axs[i,j].axis('off')
+            count+=1
+    fig.savefig(f"gan_images_{epoch}.png")
+    plt.close()
+train_gan(epochs=10000,batch_size=64)
