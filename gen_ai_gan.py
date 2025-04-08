@@ -1,4 +1,4 @@
-import os
+'''import os
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 import numpy as np
@@ -96,4 +96,8 @@ def save_images(epoch):
     fig.savefig(f"gan_images_{epoch}.png")
     plt.close()
 
-train_gan(epochs=10000, batch_size=64)
+train_gan(epochs=10000, batch_size=64)'''
+
+import tensorflow as tf
+print("TensorFlow version:", tf.__version__)
+print("Num GPUs Available:", len(tf.config.list_physical_devices('GPU')))
