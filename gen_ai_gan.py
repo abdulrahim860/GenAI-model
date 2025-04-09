@@ -77,7 +77,7 @@ def train_gan(epochs, batch_size=128):
         noise = np.random.normal(0, 1, (batch_size, 100))
         g_loss = gan.train_on_batch(noise, real)
         
-        if epoch % 100 == 0:
+        if epoch % 2000== 0:
             print(f"{epoch} [D loss: {d_loss[0]}, acc.: {100*d_loss[1]}] [G loss: {g_loss}]")
             save_images(epoch)
 
@@ -97,4 +97,3 @@ def save_images(epoch):
     plt.close()
 
 train_gan(epochs=10000, batch_size=64)
-
