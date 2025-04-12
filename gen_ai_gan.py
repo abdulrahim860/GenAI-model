@@ -20,13 +20,13 @@ def build_generator():
     model = Sequential()
     model.add(Input(shape=(100,)))  
     model.add(Dense(256))
-    model.add(LeakyReLU(alpha=0.2))  # Changed here
+    model.add(LeakyReLU(alpha=0.2))  
     model.add(BatchNormalization(momentum=0.8))
     model.add(Dense(512))
-    model.add(LeakyReLU(alpha=0.2))  # Changed here
+    model.add(LeakyReLU(alpha=0.2))  
     model.add(BatchNormalization(momentum=0.8))
     model.add(Dense(1024))
-    model.add(LeakyReLU(alpha=0.2))  # Changed here
+    model.add(LeakyReLU(alpha=0.2))  
     model.add(BatchNormalization(momentum=0.8))
     model.add(Dense(784, activation='tanh'))
     model.add(Reshape((28, 28, 1)))
@@ -39,9 +39,9 @@ def build_discriminator():
     model.add(Input(shape=(28, 28, 1)))  
     model.add(Flatten())  
     model.add(Dense(512))
-    model.add(LeakyReLU(alpha=0.2))  # Changed here
+    model.add(LeakyReLU(alpha=0.2))  
     model.add(Dense(256))
-    model.add(LeakyReLU(alpha=0.2))  # Changed here
+    model.add(LeakyReLU(alpha=0.2))  
     model.add(Dense(1, activation='sigmoid'))
     return model
 
